@@ -22,6 +22,7 @@ https://discord.com/developers
 ___________________________________
 
 Step 3 : Replace the Token and other dependencies inside config.json
+
 {
   "token": "process.env.TOKEN", put ur bot token here 
   "bug": "1061309916805079171", channel id for bug reports
