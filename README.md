@@ -1,5 +1,13 @@
 # Giveaway-bot-7312
 🎉 Giveaway bot, just for Giveaways 🎉  A bot for hosting giveaways!  Simply add the bot to your server and  type /help for a list of commands!
+
+
+
+
+
+
+
+
 Step 1: Install the Dependencies
 
 # https://nodejs.org/en/blog/release/v16.0.0/ get node.js
