@@ -10,7 +10,7 @@
 
 Step 1: Install the Dependencies
 
-# https://nodejs.org/en/blog/release/v16.0.0/ get node.js
+https://nodejs.org/en/blog/release/v16.0.0/ get node.js
 npm install 
 Step 2: Obtain a Bot Token From Here
 https://discord.com/developers
