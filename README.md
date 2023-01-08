@@ -12,7 +12,7 @@ Step 1: Install the Dependencies
 
 get node.js
 
-run ``npm install``
+run ``npm install`` & ``npm install japi`` & ``npm install moments`` (if any others let me know and ill edit this later)
 
 ___________________________________
 
