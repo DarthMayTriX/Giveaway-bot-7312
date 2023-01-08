@@ -24,13 +24,20 @@ ___________________________________
 Step 3 : Replace the Token and other dependencies inside config.json
 
 {
-  "token": "process.env.TOKEN", put ur bot token here 
-  "bug": "1061309916805079171", channel id for bug reports
+  "token": "process.env.TOKEN", 👈 put ur bot token here 
+
+  "bug": "1061309916805079171", 👈 channel id for bug reports
+
   "prefix": ",", 
+
   "embedColor": "#00FF00",
+
   "everyoneMention": true, 
+
   "copyright": "GiveawayBot™ v3 By Darth",
+
   "hostedBy": true 
+
 }
 
 ___________________________________
