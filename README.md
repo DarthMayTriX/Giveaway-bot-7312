@@ -12,11 +12,10 @@ Step 1: Install the Dependencies
 
 https://nodejs.org/en/blog/release/v16.0.0/ get node.js
 npm install 
+➖
 Step 2: Obtain a Bot Token From Here
 https://discord.com/developers
-
 ➖
-
 Step 3 : Replace the Token and other dependencies inside config.json
 {
   "token": "process.env.TOKEN", put ur bot token here 
@@ -27,6 +26,7 @@ Step 3 : Replace the Token and other dependencies inside config.json
   "copyright": "GiveawayBot™ v3 By Darth",
   "hostedBy": true 
 }
+➖
 Step 4: Get your japi key
 Visit [japi](https://key.japi.rest/) and get your key
 Add your key on slash/userinfo.js
