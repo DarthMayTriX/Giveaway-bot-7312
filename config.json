@@ -1,0 +1,9 @@
+{
+  "token": "process.env.TOKEN", 
+  "bug": "1061309916805079171", 
+  "prefix": ",", 
+  "embedColor": "#00FF00",
+  "everyoneMention": true, 
+  "copyright": "GiveawayBot™ v3 By Darth",
+  "hostedBy": true 
+}
