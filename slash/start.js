@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-const {  ApplicationCommandOptionType, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const {  ApplicationCommandOptionType } = require("discord.js");
 const messages = require("../utils/message");
 const ms = require("ms")
 module.exports = {
@@ -44,8 +44,8 @@ module.exports = {
       required: false
     },
     {
-      name: 'description',
-      description: 'Add more details about your giveaway',
+      name: 'invite',
+      description: 'Invite of the server you want to add as giveaway joining requirement',
       type: ApplicationCommandOptionType.String,
       required: false
     },
@@ -93,7 +93,7 @@ module.exports = {
     const bonusRole = interaction.options.getRole('bonusrole')
     const bonusEntries = interaction.options.getInteger('bonusamount')
     let rolereq = interaction.options.getRole('role')
-    let invite = interaction.options.getString('description')
+    let invite = interaction.options.getString('invite')
 
     if (bonusRole) {
       if (!bonusEntries) {
@@ -106,20 +106,46 @@ module.exports = {
 
 
     await interaction.deferReply({ ephemeral: true })
+    let reqinvite;
+    if (invite) {
+      let invitex = await client.fetchInvite(invite)
+      let client_is_in_server = client.guilds.cache.get(
+        invitex.guild.id
+      )
+      reqinvite = invitex
+      if (!client_is_in_server) {
+          const gaEmbed = {
+            author: {
+              name: client.user.username,
+              iconURL: client.user.displayAvatarURL() 
+            },
+            title: "Server Check!",
+            url: "https://darthmaytrix.com",
+            description:
+              "Woah woah woah! I see a new server! are you sure I am in that? You need to invite me there to set that as a requirement! 😳",
+            timestamp: new Date(),
+            footer: {
+              iconURL: client.user.displayAvatarURL(),
+              text: "Server Check"
+            }
+          }  
+        return interaction.editReply({ embeds: [gaEmbed]})
+      }
+    }
 
-    if (rolereq) {
+    if (rolereq && !invite) {
       messages.inviteToParticipate = `**React with 🎉 to participate!**\n>>> - Only members having ${rolereq} are allowed to participate in this giveaway!`
     }
     if (rolereq && invite) {
-      messages.inviteToParticipate = `**React with 🎉 to participate!**\n>>> - Only members having ${rolereq} are allowed to participate in this giveaway!`
+      messages.inviteToParticipate = `**React with 🎉 to participate!**\n>>> - Only members having ${rolereq} are allowed to participate in this giveaway!\n- Members are required to join [this server](${invite}) to participate in this giveaway!`
     }
     if (!rolereq && invite) {
-      messages.inviteToParticipate = `**React with 🎉 to participate!**\n>>> Read more details about this giveaway down below!`
+      messages.inviteToParticipate = `**React with 🎉 to participate!**\n>>> - Members are required to join [this server](${invite}) to participate in this giveaway!`
     }
 
 
-    // start giveaway
-    client.giveawaysManager.start(giveawayChannel, {
+     // start giveaway
+     client.giveawaysManager.start(giveawayChannel, {
       // The giveaway duration
       duration: ms(giveawayDuration),
       // The giveaway prize
@@ -139,6 +165,7 @@ module.exports = {
       // Messages
       messages,
       extraData: {
+        server: reqinvite == null ? "null" : reqinvite.guild.id,
         role: rolereq == null ? "null" : rolereq.id,
       }
     });
@@ -147,22 +174,6 @@ module.exports = {
         `Giveaway started in ${giveawayChannel}!`,
       ephemeral: true
     })
-
-    if (invite) {
-      let des = new Discord.EmbedBuilder()
-        .setAuthor({ name: `Giveaway Description` })
-        .setDescription(`${invite}`)
-        .setColor("#2F3136");
-
-      const row = new ActionRowBuilder()
-    .addComponents(
-        new ButtonBuilder()
-        .setLabel('blank')
-        .setStyle(ButtonStyle.Link)
-        .setURL(`blank`))
-
-      giveawayChannel.send({ embeds: [des], });
-    }
 
     if (bonusRole) {
       let giveaway = new Discord.EmbedBuilder()
