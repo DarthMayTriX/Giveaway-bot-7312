@@ -1,4 +1,4 @@
-# Giveaway bot (by Darth), |bugs being looked into 1. ReferenceError: Discord is not defined |
+# Giveaway bot (by Darth), 
 🎉 Giveaway bot, just for Giveaways 🎉  A bot for hosting giveaways!  Simply add the bot to your server and  type /help for a list of commands!
 
 
